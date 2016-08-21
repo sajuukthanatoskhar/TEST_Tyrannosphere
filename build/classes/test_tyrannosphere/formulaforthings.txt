@@ -1,0 +1,10 @@
+Hit chance for things
+
+Damage dealt
+
+Maybe a simple model?
+
+Missile Damage
+
+Bomb Damage
+

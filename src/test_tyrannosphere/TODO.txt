@@ -1,0 +1,28 @@
+Goals for Alpha:
+
+v2 
+    Battlesphere should be ready to go
+
+v3 
+    Multiplayer and Singleplayer - Don't think so yet
+    All other parts of ships need to be put into place
+
+
+
+Goals for Beta : 
+    
+
+Development :
+
+Primary
+
+    Simulation of Shield Regen
+    Simulation of Armor and Shield Reppers
+    Simulation of reaction times within fleet
+
+
+
+    Have you considered intergrating a Fleet Composition and a Dscan tool into this? 
+    Figure out how much DPS you can tank, ability to track at what ranges etc.
+
+
