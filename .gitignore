@@ -102,5 +102,6 @@ hs_err_pid*
 # Project Specifc
 *.flt
 *.tyrflt
+*.tyrfit
 fits/
 fleets/
