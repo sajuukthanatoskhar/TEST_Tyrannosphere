@@ -105,3 +105,4 @@ hs_err_pid*
 *.tyrfit
 fits/
 fleets/
+/TEST_T/nbproject/private/
