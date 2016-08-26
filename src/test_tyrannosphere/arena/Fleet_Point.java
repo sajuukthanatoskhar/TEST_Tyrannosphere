@@ -5,7 +5,7 @@ import test_tyrannosphere.Fleet;
 
 /**
  * In test_tyr.Fleet, we have made our fleet and the ships that go in that fleet
- * @author Gareth
+ * @author Sajuuk
  */
 public class Fleet_Point {
     

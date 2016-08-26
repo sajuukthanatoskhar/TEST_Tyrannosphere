@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * The arena is the backend where the fleets do battle
+ * For EVE Nerds, this is the system where you will engage your hostile fleet.  
  * @author Sajuuk
  */
 public class Arena {
