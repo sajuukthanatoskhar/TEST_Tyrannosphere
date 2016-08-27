@@ -13,7 +13,7 @@ public class Fleet_Point {
     
     private Fleet This_Fleet;  //The fleet attached to this Fleet_Point
     private float x_pos,y_pos,z_pos;  //All fleets have a starting point at time 0.  
-    private float vector[];  //All fleets have a vector (for their speed)
+    private float[] vector;  //All fleets have a vector (for their speed)
     
     
     
@@ -32,17 +32,28 @@ public class Fleet_Point {
     //As it says on the tin, we are approaching another fleet
     public void approach_fleet(float range, Fleet_Point target)
     {
-        //TODO
+        //TODO: Tell fleet to approach a fleet
+    }
+
+    public void approach_fleet(float range, float[] location)
+    {
+        //TODO: Tell fleet to approach a target location
+        
+    }
+    
+    public void approach(float[] directionvector)
+    {
+       this.vector = directionvector;
     }
     
     public void orbit_fleet(float range, Fleet_Point target)
     {
-        //TODO
+        //TODO: Tell fleet to orbit fleet
     }
     
     public void keep_at_range_fleet(float range, Fleet_Point target)
     {
-        //TODO
+        //TODO: Tell fleet to keep at range
     }
     
     
