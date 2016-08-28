@@ -112,7 +112,7 @@ public final class MainMenu extends Upgraded_JFrame {
         getBuild_Ship().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                Ship_Builder_Window Ship_Build_Window = new Ship_Builder_Window();
+                ShipDesign Ship_Build_Window = new ShipDesign();
             }
         });
 

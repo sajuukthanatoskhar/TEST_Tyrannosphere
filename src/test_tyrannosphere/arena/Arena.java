@@ -2,6 +2,7 @@ package test_tyrannosphere.arena;
 
 import java.util.ArrayList;
 import java.util.List;
+import test_tyrannosphere.Fleet;
 import test_tyrannosphere.Fleet_Ship;
 
 /**
@@ -13,7 +14,7 @@ public class Arena {
     
     private float radius;
     private int time; //We start at 0, always.  Time is measured in seconds, because EVE is lovely like that
-    public List<Fleet_Point> Arena_Fleets = new ArrayList<>();  //Keeping a list of all the unique fleet_points for this Arena
+    public List<Fleet> Arena_Fleets = new ArrayList<>();  //Keeping a list of all the unique fleet_points for this Arena
     
     
     public Arena(float size)
@@ -23,7 +24,7 @@ public class Arena {
         this.time = 0; //Starting at 0
     }
     
-    public void addfleet(Fleet_Point new_fleet)
+    public void addfleet(Fleet new_fleet)
     {
         //TODO: Functionality to add new fleet_point(!) to arena
     }

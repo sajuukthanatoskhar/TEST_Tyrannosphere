@@ -11,14 +11,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import sun.print.resources.serviceui;
 import test_tyrannosphere.gui.BuildFleet_Window;
 
 /**
  *
  * @author Sajuuk
  */
-public class Fleet {
+public class Fleet extends EVEObject {
 
     private String FleetName;
     private double DPS;
@@ -26,6 +25,44 @@ public class Fleet {
     public List<Fleet_Ship> Fleet_Members = new ArrayList<>();
     double ShipSig, ShipSpeed,ShipAgility,ShipShieldRes[],ShipArmorRes[],ShipStructureRes[],ShipShieldHealth,ShipArmorHealth,ShipStructureHealth;
     double tracking, gunduration, Turret,  gunreloadtime, GEMd, GThD, GKiD, GExD,  TurretSignature,  TurretOptimal,  TurretFalloff,  capacitor_needed, MissileDPS, MissileDuration,  ExplosionRadius,  MissileVelocity,  FlightTime,  MEMD,  MThD,  MKiD, MExD;    
+    /*
+    X,Y,Z of 
+    */
+    private float x_pos,y_pos,z_pos;  //All fleets have a starting point at time 0.  
+    private float[] vector;  //All fleets have a vector (for their speed)
+
+    public float getX_pos() {
+        return x_pos;
+    }
+
+    public void setX_pos(float x_pos) {
+        this.x_pos = x_pos;
+    }
+
+    public float getY_pos() {
+        return y_pos;
+    }
+
+    public void setY_pos(float y_pos) {
+        this.y_pos = y_pos;
+    }
+
+    public float getZ_pos() {
+        return z_pos;
+    }
+
+    public void setZ_pos(float z_pos) {
+        this.z_pos = z_pos;
+    }
+
+    public float[] getVector() {
+        return vector;
+    }
+
+    public void setVector(float[] vector) {
+        this.vector = vector;
+    }
+    
     public Fleet() {
     
     }
@@ -164,5 +201,20 @@ String readout;
         
         
         return ship;
+    }
+
+    @Override
+    void update_position() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void update_dps() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void update_health() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -9,7 +9,7 @@ import test_tyrannosphere.gui.Ship_Builder_Window;
 /*
  * This class is for our ships
  */
-public class Fleet_Ship {
+public class Fleet_Ship extends EVEObject {
 
     private String Ship_Fleet;
     double EHP, DPS, signature, speed, agility;
@@ -165,5 +165,20 @@ public class Fleet_Ship {
 
     public void setStructure(double Structure) {
         this.Structure = Structure;
+    }
+
+    @Override
+    void update_position() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void update_dps() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void update_health() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

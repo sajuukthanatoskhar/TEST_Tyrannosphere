@@ -21,7 +21,10 @@ public class TEST_Tyrannosphere {
         
         MainMenu StartofProgram = new MainMenu();
         
-        
+        /*
+        Just adding an example fleet here
+        */
+        /*
         double[] resistA= {50,50,50,50},resistB = {50,50,50,50},resistC = {50,50,50,50};
         Fleet Fleet_A;
         Fleet_A = new Fleet("Red");
@@ -32,7 +35,7 @@ public class TEST_Tyrannosphere {
         Fleet_A.Print_Fleet_Members();
 
         Fleet_A.Print_Fleet_Stats();
-
+        */
         //Fleet Fleet_B;
         //Fleet_B = new Fleet("Blue");
 //        Fleet_Ship Slash1 = new Fleet_Ship(150, 2500, "Newbro Slasher", Fleet_B);

@@ -40,9 +40,8 @@ public class Ship_Builder_Window extends JFrame implements ActionListener{
     JTextField Signature;
     JLabel WeaponName_L,WeaponFalloff_L,WeaponFireRate_L,WeaponOptimal,WeaponSignature_L,WeaponTrackingSpeed_L;
     
-    //TODO: 
-    //Needs Guns,Missiles
-    //Need Presets for them (Ammo)
+    //TODO: Needs Guns,Missiles, Need Presets for them (Ammo)
+
     JButton MissileAmmoSet,GunAmmoSet;
     JButton GunsMissileOkay; //This button should lock out the 
     JTextField tracking_text,duration_text,turretDPS_text,reloadtime_text,EMD_text,ThD_text,KiD_text,ExD_text,turretsignature_text,turretoptimal_text,turretfalloff_text,capacitor_needed_text;
