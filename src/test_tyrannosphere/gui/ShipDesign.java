@@ -567,9 +567,14 @@ public class ShipDesign extends javax.swing.JFrame {
         //TODO Grab all of the information in that form
         //So many variables
         //FOR TEST ALLIANCE!!!!!!!!!
-                    
+            File f = new File("fits/");
+            if (!f.exists()) {
+                f.mkdir();
+            }
+        
+        
             try {
-                String Fleetfile = null;
+                File Fleetfile = new File("fits/"+NameTField.getText() + "_" + ShipClassTField.getText() + "_fit.tyrfit");
                 FileOutputStream writer = new FileOutputStream(Fleetfile);
                 OutputStreamWriter osw = new OutputStreamWriter(writer);
                 Writer w = new BufferedWriter(osw);
@@ -596,7 +601,6 @@ public class ShipDesign extends javax.swing.JFrame {
                 w.write(StructureAmountTField.getText()+ "\n");
                 w.write(TSigTField.getText()+ "\n");
                 w.write(WarpSpeedTField.getText()+ "\n");
-                
                 w.close();
             } catch (IOException ex) {
             }
