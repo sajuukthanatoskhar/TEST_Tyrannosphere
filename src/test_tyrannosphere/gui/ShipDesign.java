@@ -72,7 +72,6 @@ public class ShipDesign extends javax.swing.JFrame {
         ShieldRechTimeTField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         SigRadTField = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         AgilityTField = new javax.swing.JTextField();
         CapacitorTField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -80,7 +79,6 @@ public class ShipDesign extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         WarpSpeedTField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         DPSTField = new javax.swing.JTextField();
@@ -91,6 +89,8 @@ public class ShipDesign extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -207,7 +207,7 @@ public class ShipDesign extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Structure"));
 
-        StructureAmountTField.setText("Structure Amount");
+        StructureAmountTField.setText("9001");
 
         jLabel20.setText("Structure Amount");
 
@@ -234,19 +234,19 @@ public class ShipDesign extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Shield"));
 
-        ShieldExplosiveTField.setText("jTextField1");
+        ShieldExplosiveTField.setText("90");
 
         jLabel6.setText("Explosive Resistance");
 
-        ShieldKineticTField.setText("jTextField1");
+        ShieldKineticTField.setText("90");
 
         jLabel5.setText("Kinetic Resistance");
 
-        ShieldThermalTField.setText("jTextField1");
+        ShieldThermalTField.setText("90");
 
         jLabel4.setText("Thermal Resistance");
 
-        ShieldEMTField.setText("jTextField1");
+        ShieldEMTField.setText("90");
         ShieldEMTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ShieldEMTFieldActionPerformed(evt);
@@ -340,8 +340,6 @@ public class ShipDesign extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("jLabel1");
-
         AgilityTField.setText("2.2950");
 
         CapacitorTField.setText("100000");
@@ -352,11 +350,9 @@ public class ShipDesign extends javax.swing.JFrame {
 
         jLabel10.setText("Capacitor Recharge Time (s)");
 
-        WarpSpeedTField.setText("jTextField1");
+        WarpSpeedTField.setText("4.69");
 
         jLabel11.setText("Signature Radius (m)");
-
-        jTextField12.setText("jTextField1");
 
         jLabel12.setText("Agility");
 
@@ -396,13 +392,9 @@ public class ShipDesign extends javax.swing.JFrame {
                                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(0, 0, Short.MAX_VALUE)))))))
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(WarpSpeedTField)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(WarpSpeedTField, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(117, 117, 117)))
                 .addContainerGap())
         );
@@ -416,11 +408,9 @@ public class ShipDesign extends javax.swing.JFrame {
                     .addComponent(WarpSpeedTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AgilityTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(jTextField12)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CapacitorTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -439,47 +429,62 @@ public class ShipDesign extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Weapon Systems"));
 
-        DPSTField.setText("jTextField21");
+        DPSTField.setText("500");
+        DPSTField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DPSTFieldActionPerformed(evt);
+            }
+        });
 
-        OptimalTField.setText("jTextField21");
+        OptimalTField.setText("300000");
 
-        FallOffTField.setText("jTextField21");
+        FallOffTField.setText("300000");
 
-        TSigTField.setText("jTextField21");
+        TSigTField.setText("10000");
 
         jLabel21.setText("DPS");
 
-        jLabel22.setText("Optimal Range");
+        jLabel22.setText("Optimal Range (m)");
 
-        jLabel23.setText("Fall off");
+        jLabel23.setText("Fall off (m)");
 
-        jLabel24.setText("Turret Signature");
+        jLabel24.setText("Turret Signature (m)");
+
+        jLabel8.setText("Weapon Accuracy Score");
+
+        jTextField12.setText("0.05");
+        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(DPSTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(OptimalTField)
+                            .addComponent(TSigTField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(FallOffTField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(FallOffTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel23))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(TSigTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel24))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(OptimalTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel22)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel22)
+                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel23)
+                                        .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addGap(17, 17, 17))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(DPSTField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -501,6 +506,10 @@ public class ShipDesign extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TSigTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField12))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -629,6 +638,14 @@ public class ShipDesign extends javax.swing.JFrame {
     private void ShieldEMTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShieldEMTFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ShieldEMTFieldActionPerformed
+
+    private void DPSTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DPSTFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DPSTFieldActionPerformed
+
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12ActionPerformed
 
     /**
      * @param args the command line arguments
