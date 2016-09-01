@@ -292,6 +292,7 @@ public class Fleet_Ship extends EVEObject {
     }
 
     public double getEHP() {
+        this.EHP = this.getShieldAmount() + this.getArmorHitpoints() + this.getStructureAmount()/0.6666666;
         return EHP;
     }
 

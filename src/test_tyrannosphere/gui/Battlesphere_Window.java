@@ -153,7 +153,6 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
                     reader = new BufferedReader(new FileReader("fleets/" + AlphaComboBox.getSelectedItem() + "_fleet.flt"));
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(Battlesphere_Window.class.getName()).log(Level.SEVERE, null, ex);
-
                 }
                 Alpha.setName(AlphaComboBox.getSelectedItem());
                 String line;
@@ -163,18 +162,11 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
                     Alpha_Ships.add(j, line);
                     Alpha.Fleet_Members.add(j, Alpha.getShip(line));
                 }
-
-
-
                 ConsoleAlpha.setText("");
                 for (int i = 0; i < Alpha_Ships.size(); i++) {
                     ConsoleAlpha.append(Alpha_Ships.getElementAt(i).toString());
                     ConsoleAlpha.append("\n");
                 }
-
-
-
-
                 SelectAlpha.setEnabled(false);
                 AlphaComboBox.setEnabled(false);
             } catch (IOException ex) {
@@ -205,16 +197,11 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
                     Beta.Fleet_Members.add(j, Beta.getShip(line));
                 }
 
-
-
                 ConsoleBeta.setText("");
                 for (int i = 0; i < Beta_Ships.size(); i++) {
                     ConsoleBeta.append(Beta_Ships.getElementAt(i).toString());
                     ConsoleBeta.append("\n");
                 }
-
-
-
 
                 SelectBeta.setEnabled(false);
                 BetaComboBox.setEnabled(false);
@@ -248,7 +235,6 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
             time++;
             double Original_Health = Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP();
 
-
             //Kill Beta Fleet Member
             if (Original_Health <= 0) {
                 Beta_Ships.remove(selectedprimaryforAlpha);
@@ -260,8 +246,6 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
             } else {
                 Beta.Fleet_Members.get(selectedprimaryforAlpha).setEHP(Original_Health - Alpha.getDPS());
             }
-
-
 
             Original_Health = Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP();
 
@@ -275,7 +259,7 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
                 Alpha.Fleet_Members.get(selectedprimaryforBeta).setEHP(Original_Health - Beta.getDPS());
             }
             //Beta.getDPS();
-            
+
             Alpha.update();
             Beta.update();
 //            System.out.println("Alpha DPS " + Alpha.update());
@@ -288,13 +272,12 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
              * kill it's DPS -> 0
              * Update Fleet DPS and EHP
              */
-            Console.setText("\nAlpha Fleet Primary EHP: " + Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() +  "Beta Fleet Priamry EHP: " + Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP() + "\nTime : " + time);
+            Console.setText("\nAlpha Fleet Primary EHP: " + Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() + "Beta Fleet Priamry EHP: " + Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP() + "\nTime : " + time);
 
         }
 
         if (e.getSource() == Ten_Seconds) {
-            
-            
+
             time = +10;
         }
 
@@ -325,8 +308,6 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
     }
 
     private void add_actionlisteners() {
-
-
 
         AlphaComboBox.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent e) {
