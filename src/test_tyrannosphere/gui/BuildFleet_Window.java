@@ -4,7 +4,6 @@
  */
 package test_tyrannosphere.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -21,21 +20,16 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -64,6 +58,29 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
     JButton Fleet_Statistics;
     String Renamed_Fleet;
     String Fits_List[];
+    private double ArmorExplosive;
+    private double agility;
+    private double ArmorEM;
+    private double ArmorHitpoints;
+    private double ArmorKinetic;
+    private double ArmorThermal;
+    private double CapRechTime;
+    private double Capacitor;
+    private double DPS;
+    private double Weapon_Falloff;
+    private String ShipName;
+    private double Weapon_Optimal;
+    private double ShieldAmount;
+    private double ShieldEM;
+    private double ShieldExplosive;
+    private double ShieldKinetic;
+    private double ShieldRechTime;
+    private double ShieldThermal;
+    private String ShipClass;
+    private double SignatureRadius;
+    private double StructureAmount;
+    private double Weapon_Signature;
+    private double Warpspeed;
 
     public BuildFleet_Window() {
         A_Fits_Scroll = new JScrollPane();
@@ -115,11 +132,9 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
 
         Button_Panel.setBorder(BorderFactory.createEtchedBorder());
 
-
         this.add(Button_Panel, c);
         this.setName("Build Fleet");
         this.setSize(300, 300);
-
 
         c.anchor = GridBagConstraints.NORTHWEST;
         c.gridx = 0;
@@ -129,7 +144,6 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
         Console.setEnabled(false);
         this.setMinimumSize(new Dimension(725, 600));
         this.setVisible(true);
-
 
         Remove_Ship.addActionListener(this);
 
@@ -162,8 +176,6 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
         Fits_List_Panel.add(Available_Fits);
         //this.add(Fits_List_Panel, c);
 
-
-
         Current_Fleet = new JList(Fleet_Fit_lists);
         Current_Fleet.setFixedCellHeight(20);
         Current_Fleet.setFixedCellWidth(140);
@@ -171,17 +183,16 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
         Current_Fleet.add(Current_Fleet_Scroll);
         Current_Fleet.setVisible(true);
 
+        //TODO: What does this do Sajuuk?
         Fleet_List_Panel.add(Current_Fleet);
         Fleet_List_Panel.setVisible(true);
         this.add(new JScrollPane(Available_Fits), c);
-
 
         c.gridx = 4;
         this.add(new JScrollPane(Current_Fleet), c);
         //this.add(Fleet_List_Panel, c);
 
         set_mouselistener();
-
 
         Button_Panel.add(Name_Field);
         Fleet_Statistics.addActionListener(this);
@@ -217,16 +228,12 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
                 Fleet_Fit_lists.removeElementAt(fromindex);
                 Current_Fleet.setSelectedIndex(fromindex - 1);
 
-
             }
         } catch (NullPointerException NPE) {
             Console.append("\nError!!! Click a fleet fitting!");
             Console.append("\nError Ship_Fleet 1 : Null Pointer Exception");
             System.out.print("\007");
         }
-
-
-
 
         if (e.getSource() == Rename_Fleet) {
             String Renamed_Fleet = Name_Field.getText();
@@ -256,47 +263,104 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
                 String line = null;
                 try {
                     int j = -1;
+                    //This is the line reader for the EHP and DPS for the fit files
                     while ((line = reader.readLine()) != null) {
                         j++;
                         switch (j) {
                             case 0:
-                                //Title of Fit name, don't care
+                                agility = Double.parseDouble(line);
                                 break;
                             case 1:
-                                total_DPS += Double.parseDouble(line);
+                                ArmorEM = Double.parseDouble(line);
                                 break;
                             case 2:
-                                total_EHP += Double.parseDouble(line);
+                                ArmorExplosive = Double.parseDouble(line);
                                 break;
-
-
+                            case 3:
+                                ArmorHitpoints = Double.parseDouble(line);
+                                break;
+                            case 4:
+                                ArmorKinetic = Double.parseDouble(line);
+                                break;
+                            case 5:
+                                ArmorThermal = Double.parseDouble(line);
+                                break;
+                            case 6:
+                                CapRechTime = Double.parseDouble(line);
+                                break;
+                            case 7:
+                                Capacitor = Double.parseDouble(line);
+                                break;
+                            case 8:
+                                DPS = Double.parseDouble(line);
+                                break;
+                            case 9:
+                                Weapon_Falloff = Double.parseDouble(line);
+                                break;
+                            case 10:
+                                ShipName = line;
+                                break;
+                            case 11:
+                                Weapon_Optimal = Double.parseDouble(line);
+                                break;
+                            case 12:
+                                ShieldAmount = Double.parseDouble(line);
+                                break;
+                            case 13:
+                                ShieldEM = Double.parseDouble(line);
+                                break;
+                            case 14:
+                                ShieldExplosive = Double.parseDouble(line);
+                                break;
+                            case 15:
+                                ShieldKinetic = Double.parseDouble(line);
+                                break;
+                            case 16:
+                                ShieldRechTime = Double.parseDouble(line);
+                                break;
+                            case 17:
+                                ShieldThermal = Double.parseDouble(line);
+                                break;
+                            case 18:
+                                ShipClass = line;
+                                break;
+                            case 19:
+                                SignatureRadius = Double.parseDouble(line);
+                                break;
+                            case 20:
+                                StructureAmount = Double.parseDouble(line);
+                                break;
+                            case 21:
+                                Weapon_Signature = Double.parseDouble(line);
+                                break;
+                            case 22:
+                                Warpspeed = Double.parseDouble(line);
+                                break;
                         }
+                        
+
                     }
+                        total_DPS += DPS;
+                        total_EHP += ShieldAmount + ArmorHitpoints + StructureAmount/0.6666666;
                 } catch (IOException ex) {
                     Logger.getLogger(BuildFleet_Window.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-
 
             }
             Console.append("\nFleet " + Renamed_Fleet + " Statistics are as shown:\n\nDPS : " + total_DPS + "\nCombined EHP : " + total_EHP);
 //                        Console.append("\nFleet " + Renamed_Fleet + " Statistics are as shown:\n\nDPS : "+ total_DPS +"\nCombined EHP : "+ total_EHP + "\nSmallest EHP: $SmallEHP \nAverage EHP : $AverageEHP\nLogi to Logi RPS : $LogiRPS \nLogi to Ship RPS : $ShipRPS \nLowest Possible Speed : $SlowSpeed");
 
-
-
         }
-
-
 
         if (e.getSource() == Save_Fleet) {
             File Fleetfile = new File("fleets/" + Name_Field.getText().toString() + "_fleet.flt");
             try {
-                
+
                 File f = new File("fleets/");
                 if (!f.exists()) {
                     f.mkdir();
                 }
-            
+
                 FileOutputStream writer = new FileOutputStream(Fleetfile);
                 OutputStreamWriter osw = new OutputStreamWriter(writer);
                 Writer w = new BufferedWriter(osw);
@@ -321,17 +385,16 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
                 filename = files[i].getName();
                 filename = filename.substring(0, filename.indexOf("_fit.tyrfit"));
                 //At this point, add the fits to the fleet fittings
-
-
                 Fits.addElement(filename);
-
-
                 Console.append("\nAdding " + filename);
             }
         }
 
     }
 
+    /*
+    This activates 
+     */
     private void set_mouselistener() {
         Available_Fits.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent e) {
@@ -346,6 +409,7 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
                     Logger.getLogger(BuildFleet_Window.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String line = null;
+
                 try {
                     int i = -1;
                     while ((line = reader.readLine()) != null) {
