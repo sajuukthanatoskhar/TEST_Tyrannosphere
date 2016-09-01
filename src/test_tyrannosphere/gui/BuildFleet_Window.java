@@ -291,6 +291,12 @@ public class BuildFleet_Window extends JFrame implements ActionListener {
         if (e.getSource() == Save_Fleet) {
             File Fleetfile = new File("fleets/" + Name_Field.getText().toString() + "_fleet.flt");
             try {
+                
+                File f = new File("fleets/");
+                if (!f.exists()) {
+                    f.mkdir();
+                }
+            
                 FileOutputStream writer = new FileOutputStream(Fleetfile);
                 OutputStreamWriter osw = new OutputStreamWriter(writer);
                 Writer w = new BufferedWriter(osw);

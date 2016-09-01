@@ -191,13 +191,11 @@ String readout;
                     /*
                      * 
                      */
-        Fleet_Ship ship = new Fleet_Ship(line,ShipDPS,ShipEHP,ShipSig,ShipSpeed,ShipAgility,ShipShieldRes,ShipArmorRes,ShipStructureRes,ShipShieldHealth,ShipArmorHealth,ShipStructureHealth, 
-                                         tracking, gunduration,  Turret,  gunreloadtime, GEMd, GThD, GKiD, GExD,  TurretSignature,  TurretOptimal,  TurretFalloff,  capacitor_needed,
-                                         MissileDPS, MissileDuration,  ExplosionRadius,  MissileVelocity,  FlightTime,  MEMD,  MThD,  MKiD, MExD);
+        Fleet_Ship ship = new Fleet_Ship(FleetName);
         System.out.println(line);
         System.out.println(ship.Shipguns); //Print out stats relating to our beloved ships' Guns and Missile stats
         System.out.println(ship.Shipmissile);
-        System.out.println(ship.EHP);
+        System.out.println(ship.getEHP());
         
         
         return ship;

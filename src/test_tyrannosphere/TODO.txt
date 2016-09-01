@@ -26,3 +26,4 @@ Primary
     Figure out how much DPS you can tank, ability to track at what ranges etc.
 
 
+Ctrl Paste into fleet to know what 
