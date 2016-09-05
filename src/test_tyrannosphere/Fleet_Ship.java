@@ -4,13 +4,21 @@
  */
 package test_tyrannosphere;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import test_tyrannosphere.gui.BuildFleet_Window;
+
 /*
  * This class is for our ships
  */
 public class Fleet_Ship extends EVEObject {
 
-    private String Ship_Fleet;
-    private double  Agility,
+    private Fleet Ship_Fleet;
+    private double Agility,
             ArmorEM,
             ArmorExplosive,
             ArmorHitpoints,
@@ -31,17 +39,15 @@ public class Fleet_Ship extends EVEObject {
             StructureAmount,
             TSig,
             WarpSpeed;
-    
-    
 
-    
     String Name, ShipClass;
     private double EHP;
-    
+
     private double position[];
     
     Gun Shipguns;
     MissileLauncher Shipmissile;
+
     /*
                 Agility
                 ArmorEM
@@ -66,27 +72,111 @@ public class Fleet_Ship extends EVEObject {
                 StructureAmount
                 TSig
                 WarpSpeed
-    */
-    
-    /*
-     * Initialiser for ship objects 
      */
-    public Fleet_Ship(String FitName)
-    {
 
-        setShip_Fleet(FitName);
+ /*
+     * Initialiser for ship objects 
+       We include the fleet it will be joining, in addition to the fit
+     */
+    public Fleet_Ship(String FitName, Fleet OwnedFleet) throws FileNotFoundException {
 
-        //Adding to Fleet
-        //AssociatedFleet.Fleet_Members.add(this);
-        //AssociatedFleet.update();
+        this.setShip_Fleet(OwnedFleet);
+        this.setName(FitName);
+        String line = FitName;
+
+        BufferedReader reader = new BufferedReader(new FileReader("fits/" + line + "_fit.tyrfit"));
+
+        //Reading stuff from file, line by line until EOF
+        try {
+            int j = -1;
+            //This is the line reader for the EHP and DPS for the fit files
+            while ((line = reader.readLine()) != null) {
+                j++;
+                switch (j) {
+                    case 0:
+                        //agility = Double.parseDouble(line);
+                        break;
+                    case 1:
+                        //ArmorEM = Double.parseDouble(line);
+                        break;
+                    case 2:
+                        //ArmorExplosive = Double.parseDouble(line);
+                        break;
+                    case 3:
+                        ArmorHitpoints = Double.parseDouble(line);
+                        break;
+                    case 4:
+                        //ArmorKinetic = Double.parseDouble(line);
+                        break;
+                    case 5:
+                        //ArmorThermal = Double.parseDouble(line);
+                        break;
+                    case 6:
+                        //CapRechTime = Double.parseDouble(line);
+                        break;
+                    case 7:
+                        //Capacitor = Double.parseDouble(line);
+                        break;
+                    case 8:
+                        DPS = Double.parseDouble(line);
+                        break;
+                    case 9:
+                        //Weapon_Falloff = Double.parseDouble(line);
+                        break;
+                    case 10:
+                        //ShipName = line;
+                        break;
+                    case 11:
+                        //Weapon_Optimal = Double.parseDouble(line);
+                        break;
+                    case 12:
+                        ShieldAmount = Double.parseDouble(line);
+                        break;
+                    case 13:
+                        //ShieldEM = Double.parseDouble(line);
+                        break;
+                    case 14:
+                        //ShieldExplosive = Double.parseDouble(line);
+                        break;
+                    case 15:
+                        //ShieldKinetic = Double.parseDouble(line);
+                        break;
+                    case 16:
+                        //ShieldRechTime = Double.parseDouble(line);
+                        break;
+                    case 17:
+                        //ShieldThermal = Double.parseDouble(line);
+                        break;
+                    case 18:
+                        ShipClass = line;
+                        break;
+                    case 19:
+                        //SignatureRadius = Double.parseDouble(line);
+                        break;
+                    case 20:
+                        StructureAmount = Double.parseDouble(line);
+                        break;
+                    case 21:
+                        //Weapon_Signature = Double.parseDouble(line);
+                        break;
+                    case 22:
+                        //Warpspeed = Double.parseDouble(line);
+                        break;
+                }
+            }
+            this.setDPS(DPS);
+            this.EHP = ShieldAmount + ArmorHitpoints + StructureAmount / 0.6666666;
+        } catch (IOException ex) {
+            Logger.getLogger(BuildFleet_Window.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
-
-    public String getShip_Fleet() {
+    public Fleet getShip_Fleet() {
         return Ship_Fleet;
     }
 
-    public void setShip_Fleet(String Ship_Fleet) {
+    public void setShip_Fleet(Fleet Ship_Fleet) {
         this.Ship_Fleet = Ship_Fleet;
     }
 
@@ -104,8 +194,6 @@ public class Fleet_Ship extends EVEObject {
     void update_health() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
 
     public double getAgility() {
         return Agility;
@@ -292,7 +380,7 @@ public class Fleet_Ship extends EVEObject {
     }
 
     public double getEHP() {
-        this.EHP = this.getShieldAmount() + this.getArmorHitpoints() + this.getStructureAmount()/0.6666666;
+        this.EHP = this.getShieldAmount() + this.getArmorHitpoints() + this.getStructureAmount() / 0.6666666;
         return EHP;
     }
 
