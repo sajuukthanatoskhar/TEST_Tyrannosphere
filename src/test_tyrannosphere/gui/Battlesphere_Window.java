@@ -28,6 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import test_tyrannosphere.Fleet;
+import test_tyrannosphere.Fleet_Ship;
 
 /**
  *
@@ -160,7 +161,7 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
                 while ((line = reader.readLine()) != null) {
                     j++;
                     Alpha_Ships.add(j, line);
-                    Alpha.Fleet_Members.add(j, Alpha.getShip(line));
+                    Alpha.Fleet_Members.add(j, new Fleet_Ship(line, Alpha));
                 }
                 ConsoleAlpha.setText("");
                 for (int i = 0; i < Alpha_Ships.size(); i++) {
@@ -194,7 +195,7 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
                 while ((line = reader.readLine()) != null) {
                     j++;
                     Beta_Ships.add(j, line);
-                    Beta.Fleet_Members.add(j, Beta.getShip(line));
+                    Beta.Fleet_Members.add(j, new Fleet_Ship(line, Beta));
                 }
 
                 ConsoleBeta.setText("");
