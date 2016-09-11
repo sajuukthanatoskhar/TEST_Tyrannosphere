@@ -33,6 +33,31 @@ public class Fleet extends EVEObject {
     private String ShipClass;
     private double StructureAmount;
     private double total_EHP;
+
+    public double getTotal_EHP() {
+        return total_EHP;
+    }
+
+    public double getfleetDPS(Fleet fleety_fleet) {
+        double dps = 0;
+
+        for (int i = 0; i < fleety_fleet.Fleet_Members.size(); i++) {
+            dps += fleety_fleet.Fleet_Members.get(i).getDPS();
+        }
+        return dps;
+    }
+
+    public void setTotal_EHP(double total_EHP) {
+        this.total_EHP = total_EHP;
+    }
+
+    public double getTotal_DPS() {
+        return total_DPS;
+    }
+
+    public void setTotal_DPS(double total_DPS) {
+        this.total_DPS = total_DPS;
+    }
     private double total_DPS;
     private Fleet_Ship ship;
 
@@ -99,7 +124,7 @@ public class Fleet extends EVEObject {
      * 
      */
     public void update() {
-        System.out.print("\nUpdating  Numbers");
+        System.out.print("\nUpdating Numbers");
 
         //DPS Calculation
         double Total_DPS = 0;
@@ -146,6 +171,7 @@ public class Fleet extends EVEObject {
         this.DPS = Total_DPS;
         this.EHP = Total_EHP;
     }
+
     /*
      * This is for the GUI
      */
@@ -260,7 +286,7 @@ public class Fleet extends EVEObject {
         }
         /*
         
-        */
+         */
         //Fleet_Ship ship = new Fleet_Ship(FleetName, this);
         System.out.println(line);
         //System.out.println(ship.Shipguns); //Print out stats relating to our beloved ships' Guns and Missile stats
@@ -283,4 +309,6 @@ public class Fleet extends EVEObject {
     void update_health() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 }
