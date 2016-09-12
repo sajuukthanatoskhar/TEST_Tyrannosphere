@@ -384,8 +384,8 @@ public class Fleet_Ship extends EVEObject {
         return EHP;
     }
 
-    public void setEHP(double EHP) {
-        this.EHP = EHP;
+    public void setEHP(double thisEHP) {
+        EHP = thisEHP;
     }
 
     public double[] getPosition() {

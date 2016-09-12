@@ -272,7 +272,8 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
                 //change = Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Alpha.getTotal_DPS();
 
                 System.out.println("\n" + Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP());
-                Beta.Fleet_Members.get(selectedprimaryforBeta).setEHP(Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Alpha.getDPS()); //This line does not work
+                //Beta.Fleet_Members.get(selectedprimaryforBeta).setEHP(Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Alpha.getDPS()); //This line does not work
+                Beta.Fleet_Members.get(1).setEHP(1000); //This line does not work
                 System.out.println("" + Beta.Fleet_Members.get(selectedprimaryforBeta).getShipClass());
                 System.out.println("\n" + Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP());
                 System.out.println("" + Alpha.getTotal_DPS());

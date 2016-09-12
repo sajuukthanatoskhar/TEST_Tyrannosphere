@@ -28,10 +28,9 @@ public class Fleet extends EVEObject {
      */
     private float x_pos, y_pos, z_pos;  //All fleets have a starting point at time 0.  
     private float[] vector;  //All fleets have a vector (for their speed)
-    private double ArmorHitpoints;
-    private double ShieldAmount;
+
     private String ShipClass;
-    private double StructureAmount;
+
     private double total_EHP;
 
     public double getTotal_EHP() {
@@ -204,6 +203,9 @@ public class Fleet extends EVEObject {
          */
         try {
             int j = -1;
+            double ArmorHitpoints = 0;
+            double ShieldAmount = 0;
+            double StructureAmount = 0;
             //This is the line reader for the EHP and DPS for the fit files
             while ((line = reader.readLine()) != null) {
                 j++;
