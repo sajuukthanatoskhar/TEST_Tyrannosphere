@@ -169,7 +169,7 @@ public class Fleet_Ship extends EVEObject {
         } catch (IOException ex) {
             Logger.getLogger(BuildFleet_Window.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        this.EHP = this.getShieldAmount() + this.getArmorHitpoints() + this.getStructureAmount() / 0.6666666;
     }
 
     public Fleet getShip_Fleet() {
@@ -380,12 +380,11 @@ public class Fleet_Ship extends EVEObject {
     }
 
     public double getEHP() {
-        this.EHP = this.getShieldAmount() + this.getArmorHitpoints() + this.getStructureAmount() / 0.6666666;
         return EHP;
     }
 
     public void setEHP(double thisEHP) {
-        EHP = thisEHP;
+        this.EHP = thisEHP;
     }
 
     public double[] getPosition() {

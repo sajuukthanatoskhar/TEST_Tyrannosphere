@@ -259,35 +259,23 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
             Alpha.setupFleet();
             Beta.setupFleet();
             time++;
-            //Original_Health = Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP();            //Kill Beta Fleet Member
             System.out.println(Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP());
             if (Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP() <= 0) {
                 Beta_Ships.remove(selectedprimaryforAlpha);
-                Beta.Fleet_Members.remove(selectedprimaryforAlpha);
-                Beta.update();
+                Beta.Fleet_Members.remove(selectedprimaryforAlpha); //Kill it from JList
+                Beta.update();                  
                 BetaList.setSelectedIndex(0);
-                //Kill it from JList
-                //Kill it's DPS
             } else {
-                //change = Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Alpha.getTotal_DPS();
-
                 System.out.println("\n" + Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP());
-                //Beta.Fleet_Members.get(selectedprimaryforBeta).setEHP(Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Alpha.getDPS()); //This line does not work
-                Beta.Fleet_Members.get(1).setEHP(1000); //This line does not work
-                System.out.println("" + Beta.Fleet_Members.get(selectedprimaryforBeta).getShipClass());
-                System.out.println("\n" + Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP());
-                System.out.println("" + Alpha.getTotal_DPS());
+                Beta.Fleet_Members.get(selectedprimaryforBeta).setEHP(Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Alpha.getDPS()); //This line does not work
             }
-
-            //Original_Health = Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP();
-            //Kill Alpha Fleet Member            
-            if (Alpha.Fleet_Members.get(selectedprimaryforAlpha).getEHP() <= 0) {
+            if (Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() <= 0) {
                 Alpha_Ships.remove(selectedprimaryforBeta);
                 Alpha.Fleet_Members.remove(selectedprimaryforBeta);
                 Alpha.update();
                 AlphaList.setSelectedIndex(0);
             } else {
-                Alpha.Fleet_Members.get(selectedprimaryforBeta).setEHP(Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Beta.getTotal_DPS());
+                                Alpha.Fleet_Members.get(selectedprimaryforBeta).setEHP(Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Beta.getDPS()); //This line does not work
             }
             //Beta.getDPS();
 
@@ -295,8 +283,8 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
             Beta.update();
 //            System.out.println("Alpha DPS " + Alpha.update());
 //            System.out.println("Beta DPS " + Beta.update());
-            System.out.println("Alpha Fleet Priamry EHP: " + Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP());
-            System.out.println("Beta Fleet Primary EHP: " + Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP());
+//            System.out.println("Alpha Fleet Priamry EHP: " + Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP());
+//            System.out.println("Beta Fleet Primary EHP: " + Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP());
             /*
              * If Alpha/Beta Fleet member EHP is < 0, then 
              * kill it from JList

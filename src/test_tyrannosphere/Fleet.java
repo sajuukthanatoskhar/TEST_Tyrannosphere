@@ -28,9 +28,7 @@ public class Fleet extends EVEObject {
      */
     private float x_pos, y_pos, z_pos;  //All fleets have a starting point at time 0.  
     private float[] vector;  //All fleets have a vector (for their speed)
-
     private String ShipClass;
-
     private double total_EHP;
 
     public double getTotal_EHP() {
