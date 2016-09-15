@@ -6,7 +6,7 @@ package test_tyrannosphere.gui;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.ScrollPane;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -38,7 +38,7 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
 
     Fleet Alpha, Beta; //Our two fleets
     JPanel Alpha_Fleet_Controls, Beta_Fleet_Controls, Time_Controls, AlphaButton, BetaButton; // Control Panels
-    JTextArea ConsoleAlpha, ConsoleBeta, Console;
+    JTextArea ConsoleAlpha, ConsoleBeta, Console_Main;
     JButton MakePrimaryAlpha, MakePrimaryBeta, SelectAlpha, SelectBeta;
     JScrollPane Alpha_Scroll, Time_scroll, ConsoleAlphaScroll, ConsoleBetaScroll;
     JList AlphaList, BetaList;
@@ -47,15 +47,17 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
     JButton Ten_Seconds;
     DefaultListModel Alpha_Ships, Beta_Ships;
     JScrollPane AlphaList_Scroll, BetaList_Scroll;
-    int time;
+    int time; // Battle Timer
     int selectedprimaryforAlpha, selectedprimaryforBeta;
-    public double Original_Health;
-    private double change;
 
+    /*
+    Constructs all the components/GUI/alpha/beta fleets
+    Initialises battle timer to 0. 
+     */
     public Battlesphere_Window() {
         AlphaComboBox = new JComboBox<>();
         BetaComboBox = new JComboBox<>();
-        time = 0;
+        time = 0; //Battle Timer
         Alpha_Fleet_Controls = new JPanel(new FlowLayout(FlowLayout.CENTER));
         Alpha_Ships = new DefaultListModel();
         Beta_Ships = new DefaultListModel();
@@ -77,20 +79,27 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
 
         ConsoleAlpha = new JTextArea(5, 30);
         ConsoleBeta = new JTextArea(5, 30);
-        Console = new JTextArea(5, 30);
+        Console_Main = new JTextArea(10, 40);
         ConsoleAlphaScroll = new JScrollPane(ConsoleAlpha);
         ConsoleBetaScroll = new JScrollPane(ConsoleBeta);
-        Time_scroll = new JScrollPane(Console);
+        Time_scroll = new JScrollPane(Console_Main);
+        //Setup vertical scroll bars
         ConsoleAlphaScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         ConsoleBetaScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         Time_scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        ConsoleAlpha.setSize(300, 400);
-        ConsoleBeta.setSize(300, 400);
-        Console.setSize(300, 400);
+        //Setting up different consoles that output to user
+        ConsoleAlpha.setSize(300, 600);
+        ConsoleBeta.setSize(300, 600);
+        Console_Main.setSize(300, 600);
         ConsoleAlpha.setLineWrap(true);
         ConsoleBeta.setLineWrap(true);
-        Console.setLineWrap(true);
-        Console.setEnabled(false);
+        Console_Main.setLineWrap(true);
+        Console_Main.setEnabled(false);
+
+        //Setting up font for console for fleet feedback
+        Font font = new Font("Verdana", Font.BOLD, 12);
+        Console_Main.setFont(font);
+
         this.setLayout(new FlowLayout(FlowLayout.LEADING));
         Alpha_Fleet_Controls.add(AlphaComboBox);
         Alpha_Fleet_Controls.add(ConsoleAlphaScroll);
@@ -101,7 +110,7 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
 
         Beta_Fleet_Controls.add(BetaComboBox);
         Beta_Fleet_Controls.add(ConsoleBetaScroll);
-
+//Adding and disabling consoles and panels
         ConsoleAlpha.setEnabled(false);
         ConsoleBeta.setEnabled(false);
         Time_scroll.setEnabled(false);
@@ -140,7 +149,6 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
         this.setSize(1200, 500);
         this.setVisible(true);
         add_actionlisteners();
-        show_all_components();
 
     }
 
@@ -148,13 +156,11 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
     Button listeners, further explanation are for each button via getSource
      */
     public void actionPerformed(ActionEvent e) {
-                String readout, line;
-                readout = null;
-                BufferedReader reader = null;
-        /*
-        This is for the button that selects the Alpha fleet
-         */
-        if (e.getSource() == SelectAlpha) {
+        String readout, line;
+        readout = null;
+        BufferedReader reader = null;
+
+        if (e.getSource() == SelectAlpha) { //This is for the button that selects the Alpha fleet
             try {
                 ConsoleAlpha.setText("Locking in " + AlphaComboBox.getSelectedItem());
                 SelectAlpha.setEnabled(false); //Stops selecting a different fleet
@@ -190,27 +196,17 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
             }
         }
 
-        /*
-        This is for the button that selects the Beta fleet
-         */
-        if (e.getSource() == SelectBeta) {
+        if (e.getSource() == SelectBeta) { //This is for the button that selects the Beta fleet
             try {
                 ConsoleBeta.setText("Locking in " + BetaComboBox.getSelectedItem());
                 SelectBeta.setEnabled(false);  // Stops selecting a different fleet
                 BetaComboBox.setEnabled(false); //Stops selecting a different fleet
-
-                //String readout, line;
                 readout = null;
-                //BufferedReader reader = null;
-
-                /*
-                Loading up the fleet composition
-                 */
+                //Loading up the fleet composition
                 try {
                     reader = new BufferedReader(new FileReader("fleets/" + BetaComboBox.getSelectedItem() + "_fleet.flt"));
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(Battlesphere_Window.class.getName()).log(Level.SEVERE, null, ex);
-
                 }
 
                 Beta.setName(BetaComboBox.getSelectedItem());
@@ -256,42 +252,48 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
         }
 
         if (e.getSource() == One_Second) {
-            Alpha.setupFleet();
-            Beta.setupFleet();
-            time++;
-            System.out.println(Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP());
-            if (Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP() <= 0) {
-                Beta_Ships.remove(selectedprimaryforAlpha);
-                Beta.Fleet_Members.remove(selectedprimaryforAlpha); //Kill it from JList
-                Beta.update();                  
-                BetaList.setSelectedIndex(0);
-            } else {
-                System.out.println("\n" + Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP());
-                Beta.Fleet_Members.get(selectedprimaryforBeta).setEHP(Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Alpha.getDPS()); //This line does not work
+            if (Alpha.Fleet_Members.size() > 0 && Beta.Fleet_Members.size() > 0) {
+                Alpha.setupFleet();
+                Beta.setupFleet();
+                time++;
+                System.out.println(Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP());
+                if (Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP() <= 0) {
+                    Beta_Ships.remove(selectedprimaryforAlpha);
+                    Beta.Fleet_Members.remove(selectedprimaryforAlpha); //Kill it from JList
+                    Beta.update();
+                    BetaList.setSelectedIndex(0);
+                } else {
+                    System.out.println("\n" + Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP());
+                    Beta.Fleet_Members.get(selectedprimaryforBeta).setEHP(Beta.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Alpha.getDPS()); //This line does not work
+                }
+                if (Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() <= 0) {
+                    Alpha_Ships.remove(selectedprimaryforBeta);
+                    Alpha.Fleet_Members.remove(selectedprimaryforBeta);
+                    Alpha.update();
+                    AlphaList.setSelectedIndex(0);
+                } else {
+                    Alpha.Fleet_Members.get(selectedprimaryforBeta).setEHP(Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Beta.getDPS()); //This line does not work
+                }
+                //Beta.getDPS();
+                if (Alpha.Fleet_Members.size() > 0 && Beta.Fleet_Members.size() > 0) {
+                    Alpha.update();
+                    Beta.update();
+                    /*
+                     * If Alpha/Beta Fleet member EHP is < 0, then 
+                     * kill it from JList
+                     * kill it's DPS -> 0
+                     * Update Fleet DPS and EHP
+                     */
+                    Console_Main.setText("\nAlpha Fleet Primary EHP: " + Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() + "Beta Fleet Priamry EHP: " + Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP());
+                    Console_Main.append("\n Beta Fleet Primary EHP: " + Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() + "Alpha Fleet Priamry EHP: " + Alpha.Fleet_Members.get(selectedprimaryforAlpha).getEHP() + "\nTime : " + time);
+                }
+            } else if (Beta.Fleet_Members.size() == 0 && Alpha.Fleet_Members.size() == 0) {
+                Console_Main.setText("\nBoth Fleets are Destroyed\nGlorious Destruction");
+            } else if (Alpha.Fleet_Members.size() == 0) {
+                Console_Main.setText("\nAlpha Fleet is Destroyed\nAll glory to TEST Alliance Please Ignore");
+            } else if (Beta.Fleet_Members.size() == 0) {
+                Console_Main.setText("\nBeta Fleet is Destroyed\nAll glory to TEST Alliance Please Ignore");
             }
-            if (Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() <= 0) {
-                Alpha_Ships.remove(selectedprimaryforBeta);
-                Alpha.Fleet_Members.remove(selectedprimaryforBeta);
-                Alpha.update();
-                AlphaList.setSelectedIndex(0);
-            } else {
-                                Alpha.Fleet_Members.get(selectedprimaryforBeta).setEHP(Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() - Beta.getDPS()); //This line does not work
-            }
-            //Beta.getDPS();
-
-            Alpha.update();
-            Beta.update();
-//            System.out.println("Alpha DPS " + Alpha.update());
-//            System.out.println("Beta DPS " + Beta.update());
-//            System.out.println("Alpha Fleet Priamry EHP: " + Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP());
-//            System.out.println("Beta Fleet Primary EHP: " + Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP());
-            /*
-             * If Alpha/Beta Fleet member EHP is < 0, then 
-             * kill it from JList
-             * kill it's DPS -> 0
-             * Update Fleet DPS and EHP
-             */
-            Console.setText("\nAlpha Fleet Primary EHP: " + Alpha.Fleet_Members.get(selectedprimaryforBeta).getEHP() + "Beta Fleet Priamry EHP: " + Beta.Fleet_Members.get(selectedprimaryforAlpha).getEHP() + "\nTime : " + time);
 
         }
 
@@ -301,6 +303,7 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
         }
 
     }
+
 
     /*
      * 1. Import all fleets from folder
@@ -321,11 +324,6 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
         }
     }
 
-    private void show_all_components() {
-//        this.add(AlphaComboBox);
-//        this.add(BetaComboBox);
-    }
-
     private void add_actionlisteners() {
 
         AlphaComboBox.addMouseListener(new MouseAdapter() {
@@ -334,4 +332,5 @@ public final class Battlesphere_Window extends JFrame implements ActionListener 
             }
         });
     }
+
 }
